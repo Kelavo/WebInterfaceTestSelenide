@@ -10,7 +10,7 @@ public class OrderingACardTest {
 
     @Test
     void shouldSendARequest() {
-        open("http://localhost:9999");
+        open("http://localhost:9999/");
         SelenideElement form = $("form");
         form.$("[data-test-id=name] input").setValue("Тарас Бульба");
         form.$("[data-test-id=phone] input").setValue("+79781234567");
@@ -21,7 +21,7 @@ public class OrderingACardTest {
 
     @Test
     void shouldSendARequestMistake() {
-        open("http://localhost:9999");
+        open("http://localhost:9999/");
         SelenideElement form = $("form");
         form.$("[data-test-id=name] input").setValue("Ivan Ivanov");
         form.$("[data-test-id=phone] input").setValue("+79781234567");
