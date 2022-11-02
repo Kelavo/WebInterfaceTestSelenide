@@ -1,16 +1,17 @@
+package netology;
+
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class OrderingACardTest {
+public class OrderingACard {
 
     @Test
     void shouldSendARequest() {
-        open("http://localhost:9999");
+        open("http://localhost:9999/");
         SelenideElement form = $("form");
         form.$("[data-test-id=name] input").setValue("Тарас Бульба");
         form.$("[data-test-id=phone] input").setValue("+79781234567");
