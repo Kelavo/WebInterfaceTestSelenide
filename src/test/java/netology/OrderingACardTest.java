@@ -46,13 +46,23 @@ public class OrderingACardTest {
     }
 
     @Test
-    void shouldSendARequestMistakeEmptyValue() {
+    void shouldSendARequestMistakeEmptyValueName() {
         SelenideElement form = $("form");
         form.$("[data-test-id=name] input").setValue("");
-        form.$("[data-test-id=phone] input").setValue("");
+        form.$("[data-test-id=phone] input").setValue("+79781234567");
         form.$("[data-test-id=agreement]").click();
         form.$("[type=button]").click();
         $("[data-test-id=name].input_invalid .input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
+    }
+
+    @Test
+    void shouldSendARequestMistakeEmptyValuePhone() {
+        SelenideElement form = $("form");
+        form.$("[data-test-id=name] input").setValue("Тарас Бульба-Гоголь");
+        form.$("[data-test-id=phone] input").setValue("");
+        form.$("[data-test-id=agreement]").click();
+        form.$("[type=button]").click();
+        $("[data-test-id=phone].input_invalid .input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 
     @Test
@@ -61,6 +71,6 @@ public class OrderingACardTest {
         form.$("[data-test-id=name] input").setValue("Тарас Бульба-Гоголь");
         form.$("[data-test-id=phone] input").setValue("+79781234567");
         form.$("[type=button]").click();
-        $("[class=checkbox__text]").shouldHave(Condition.exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй"));
+        $(".input_invalid [class=checkbox__text]").shouldHave(Condition.exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй"));
     }
 }
